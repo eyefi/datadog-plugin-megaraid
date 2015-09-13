@@ -24,7 +24,7 @@ class megaraid(AgentCheck):
         parsedCurrentVirtualDriveState = False
 
         # Run the MegaRAID command to query all physical drives
-        with os.popen('sudo /opt/MegaRAID/MegaCli/MegaCli64 -LdPdInfo -aALL', 'r') as pipe:
+        with os.popen('sudo /opt/MegaRAID/MegaCli/MegaCli64 -LdPdInfo -aALL -NoLog', 'r') as pipe:
             for line in pipe:
                 # If the line is the beginning of a new adapter section...
                 match = re.search(r'^Adapter #(\d+)', line)
@@ -60,7 +60,7 @@ class megaraid(AgentCheck):
                     continue
 
         # Run the MegaRAID command to query all virtual drives (i.e. arrays)
-        with os.popen('sudo /opt/MegaRAID/MegaCli/MegaCli64 -LDInfo -Lall -aALL', 'r') as pipe:
+        with os.popen('sudo /opt/MegaRAID/MegaCli/MegaCli64 -LDInfo -Lall -aALL -NoLog', 'r') as pipe:
             for line in pipe:
                 # If the line is the beginning of a new virtual drive section...
                 match = re.search(r'^Virtual\s+Drive:\s+(\d+)', line)
