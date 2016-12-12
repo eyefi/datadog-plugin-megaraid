@@ -19,6 +19,7 @@ class megaraid(AgentCheck):
         currentVirtualDriveNumber = -1
         virtualDrivesByState = defaultdict(lambda: 0)
         virtualDrivesByState['optimal'] = 0
+        virtualDrivesByState['partially'] = 0
         virtualDrivesByState['degraded'] = 0
         virtualDrivesByState['unknown'] = 0
         parsedCurrentVirtualDriveState = False
